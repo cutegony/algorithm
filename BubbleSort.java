@@ -10,6 +10,7 @@ public class BubbleSort {
     private int[] getBubbleSort(int[] inputArray) {
         for(int i = 0; i < inputArray.length -1; i++) {
             for(int j = 0; j < inputArray.length -1; j++) {
+                // Swap
                 if(inputArray[j] > inputArray[j+1]) {
                     int temp = inputArray[j];
                     inputArray[j] = inputArray[j+1];
@@ -23,7 +24,7 @@ public class BubbleSort {
     }
 
     @Test
-    public void testBubbleSort() {
+    public void testSorting() {
         int[] sortedArray = {1,2,3,4,5,6};
 
         int[] testArray1 = {6,2,3,5,1,4};
