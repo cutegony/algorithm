@@ -11,37 +11,48 @@ public class MergeSort {
         System.out.println("Splitting: " + Arrays.toString(inputArray));
 
         if (inputArray.length > 1) {
+            // get middle index of input array
             int mid = inputArray.length / 2;
+
+            // get left half array of input array
             int[] leftHalf = getHalfArray(inputArray, mid, true);
+            // get right half array of input array
             int[] rightHalf = getHalfArray(inputArray, mid, false);
 
+            // recursion of left half array
             getMergeSort(leftHalf);
+            // recursion of right half array
             getMergeSort(rightHalf);
 
-            int i = 0, j = 0, k = 0;
+            int indexOfLeftHalfArray = 0;
+            int indexOfRightHalfArray = 0;
+            int indexOfInputArray = 0;
 
-            while (i < leftHalf.length && j < rightHalf.length) {
-                if (leftHalf[i] < rightHalf[j]) {
-                    inputArray[k] = leftHalf[i];
-                    i++;
+            // case 1. there are left half array and right half array
+            while (indexOfLeftHalfArray < leftHalf.length && indexOfRightHalfArray < rightHalf.length) {
+                if (leftHalf[indexOfLeftHalfArray] < rightHalf[indexOfRightHalfArray]) {
+                    inputArray[indexOfInputArray] = leftHalf[indexOfLeftHalfArray];
+                    indexOfLeftHalfArray++;
                 } else {
-                    inputArray[k] = rightHalf[j];
-                    j++;
+                    inputArray[indexOfInputArray] = rightHalf[indexOfRightHalfArray];
+                    indexOfRightHalfArray++;
                 }
 
-                k++;
+                indexOfInputArray++;
             }
 
-            while (i < leftHalf.length) {
-                inputArray[k] = leftHalf[i];
-                i++;
-                k++;
+            // case 2. there is only left half array
+            while (indexOfLeftHalfArray < leftHalf.length) {
+                inputArray[indexOfInputArray] = leftHalf[indexOfLeftHalfArray];
+                indexOfLeftHalfArray++;
+                indexOfInputArray++;
             }
 
-            while (j < rightHalf.length) {
-                inputArray[k] = rightHalf[j];
-                j++;
-                k++;
+            // case 3. there is only right half array
+            while (indexOfRightHalfArray < rightHalf.length) {
+                inputArray[indexOfInputArray] = rightHalf[indexOfRightHalfArray];
+                indexOfRightHalfArray++;
+                indexOfInputArray++;
             }
         }
 
