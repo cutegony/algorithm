@@ -69,27 +69,26 @@ public class LinkedList<Item> implements Iterable<Item> {
      * @throws NoSuchElementException if this linked list is empty
      */
     public void remove(Item key) {
-        if (head == null) {
+        if (head == null)
             throw new NoSuchElementException("cannot delete");
-        } else {
-            if (head.item.equals(key)) {
-                head = head.next;
-                return;
-            }
 
-            Node cur = head;
-            Node prev = null;
-
-            while (cur != null && !cur.item.equals(key)) {
-                prev = cur;
-                cur = cur.next;
-            }
-
-            if (cur == null) throw new NoSuchElementException("cannot delete");
-
-            //delete cur node
-            prev.next = cur.next;
+        if (head.item.equals(key)) {
+            head = head.next;
+            return;
         }
+
+        Node cur = head;
+        Node prev = null;
+
+        while (cur != null && !cur.item.equals(key)) {
+            prev = cur;
+            cur = cur.next;
+        }
+
+        if (cur == null) throw new NoSuchElementException("cannot delete");
+
+        //delete cur node
+        prev.next = cur.next;
     }
 
     /**
